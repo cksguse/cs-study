@@ -34,3 +34,21 @@ HTTP通信は、クライアントからの**リクエスト**と、サーバー
 ## 5. HTTPとWeb API（REST API）の関係
 HTTPは**データを送信するための通信規約（プロトコル）**であり、APIは**クライアントとサーバーがやり取りするためのインターフェース**。
 現代のWeb APIは、HTTPの構成要素を積極的に活用して構築されている。
+
+---
+### 6. 개념 구분하기
+Request와 Response는 데이터(속성)와 기능(프로그래밍 메서드)을 하나로 묶어둔 객체(인스턴스)이다.
+- Request/Response(객체) : 요청 정보나 응답 정보를 담는 '틀'이자 '상자' (내부에 URL, Header, Body 등의 속성과 이를 제어하는 함수를 가짐)
+- HTTP Method(객체 내부의 값/속성) : Request라는 객체 내부에 저장되는 데이터 중 하나 (`GET, POST, PUT, DELETE 등`)
+- 프로그래밍 Method(함수) : Request 객체의 값을 설정하거나 읽어오기 위해 사용하는 기능/함수 (예 : `setMethod(), getBody()`)
+#### 코드 구조로 보는 개념 구분(Apex)
+1. HttpRequest라는 객체를 생성
+HttpRequest req = new HttpRequest();
+2. req객체의 프로그래밍 메서드(`setMethod`)를 호출하여 HTTP 메서드 값(`GET`)을 저장
+req.setMethod('Get');
+3. HttpResponse라는 객체로 서버의 응답을 전달받음
+HttpResponse res = http.send(req);
+#### HTTP 메서드는 프로그래밍 언어의 메서드와 의미가 다른 동음이의어
+- 프로그래밍의 메서드(Function) : 클래스/객체에 정의된 실행 가능한 기능 및 함수
+- HTTP의 메서드(Action) : 서버의 URL(자원)에 대해 수행하고 싶은 행위의 종류를 나타내는 규격용어
+
